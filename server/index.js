@@ -11,10 +11,9 @@ const io = require("socket.io")(server, {
 
 io.on("connection", (socket) => {
   console.log("a user connected");
-  socket.join("123");
   socket.on("sendChat", (payLoad) => {
     console.log("received: ", payLoad);
-    socket.to("123").emit("getChat", payLoad);
+    socket.emit("getChat", payLoad);
   });
 
   socket.on("disconnect", () => {

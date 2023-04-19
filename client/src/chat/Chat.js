@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import io from "socket.io-client";
-// const socket = io.connect("http://localhost:5000");
-
-import { socket } from "../socket.js";
+import { socket } from "../utils/socket.js";
 
 export default function Chat() {
   const [connected, setConnected] = useState(false);
