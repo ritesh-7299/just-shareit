@@ -1,26 +1,7 @@
-require("dotenv").config();
+const server = require("./socket.js");
 
-const app = require("express")();
-const server = require("http").createServer(app);
+const port = process.env.PORT || 5000;
 
-const io = require("socket.io")(server, {
-  cors: {
-    origin: `${process.env.CLIENT_URL}`,
-  },
-});
-
-io.on("connection", (socket) => {
-  console.log("a user connected");
-  socket.on("sendChat", (payLoad) => {
-    console.log("received: ", payLoad);
-    socket.emit("getChat", payLoad);
-  });
-
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
-});
-
-server.listen(5000, () => {
+server().listen(port, () => {
   console.log("listening on port:5000");
 });
