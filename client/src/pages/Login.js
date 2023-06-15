@@ -3,28 +3,29 @@ import logo from "../assets/logo.png";
 import { useFormik } from "formik";
 import { loginSchema } from "../schemas";
 import Axios from "axios";
-
-const loginUser = async (values) => {
-  const config = {
-    headers: {
-      "Content-type": "application/json",
-    },
-  };
-  try {
-    const { data } = await Axios.post(
-      `${process.env.REACT_APP_BACKENDURL}/user/login`,
-      {
-        values,
-        config,
-      }
-    );
-    console.log(data);
-  } catch (error) {
-    console.log(error);
-  }
-};
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+  const loginUser = async (values) => {
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+    try {
+      const { data } = await Axios.post(
+        `${process.env.REACT_APP_BACKENDURL}/user/login`,
+        values,
+        config
+      );
+      localStorage.setItem("token", data.data.token);
+      navigate("/chat");
+    } catch (error) {
+      console.log(error);
+      alert("Error has been occurring.");
+    }
+  };
   const { values, touched, errors, handleSubmit, handleChange } = useFormik({
     initialValues: {
       email: "",

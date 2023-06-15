@@ -1,14 +1,16 @@
 require("dotenv").config();
-const userRoutes = require("./routes/user.js");
+const express = require("express");
 const cors = require("cors");
+const userRoutes = require("./routes/user.js");
 
 module.exports = function () {
-  const app = require("express")();
+  const app = express();
   app.use(
     cors({
       origin: [`${process.env.CLIENT_URL}`],
     })
   );
+  app.use(express.json());
   //attaching routes
   app.use("/user", userRoutes);
 

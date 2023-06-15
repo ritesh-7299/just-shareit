@@ -4,6 +4,7 @@ const Chat = React.lazy(() => import("../chat/Chat.js"));
 const Home = React.lazy(() => import("../pages/Home.js"));
 const NotFoundPage = React.lazy(() => import("../pages/NotFoundPage"));
 const Login = React.lazy(() => import("../pages/Login"));
+const CounterRedux = React.lazy(() => import("../pages/CounterRedux"));
 
 function Index() {
   return (
@@ -13,6 +14,7 @@ function Index() {
           <Route path="/" Component={Home} exact />
           <Route path="/chat" Component={Chat} />
           <Route path="/login" Component={Login} />
+          <Route path="/redux" Component={CounterRedux} />
           <Route path="*" Component={NotFoundPage} />
         </Routes>
       </Router>
