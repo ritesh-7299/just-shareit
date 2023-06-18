@@ -18,7 +18,7 @@ const loginUser = asyncHandler(async (req, res) => {
   if (selectUser) {
     if (await selectUser.matchPassword(password)) {
       ResponseHandler.sendSuccessResponse(res, {
-        token: generateJWToken(selectUser._id),
+        id: selectUser._id,
       });
     } else {
       ResponseHandler.sendValidationError(res, "Password is incorrect");

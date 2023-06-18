@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { loginSchema } from "../schemas";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -80,7 +81,7 @@ export default function Login() {
                 </label>
                 <div className="text-sm">
                   <a
-                    href="#"
+                    href="/#"
                     className="font-semibold text-indigo-600 hover:text-indigo-500"
                   >
                     Forgot password?
@@ -115,12 +116,12 @@ export default function Login() {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Not a member?{" "}
-            <a
-              href="#"
+            <Link
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+              to={"/register"}
             >
               Register here
-            </a>
+            </Link>
           </p>
         </div>
       </div>

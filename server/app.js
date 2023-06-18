@@ -11,6 +11,9 @@ module.exports = function () {
     })
   );
   app.use(express.json());
+
+  app.use("/images", express.static("images"));
+
   //attaching routes
   app.use("/user", userRoutes);
 
