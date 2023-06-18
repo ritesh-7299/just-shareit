@@ -18,10 +18,12 @@ const upload = multer({ storage: storage });
 
 const uploadFile = asyncHandler(async (req, res) => {
   const image = req.file.filename;
+  const format = req.body.format.split(",");
+  console.log(format);
   const baseUrl = `${req.protocol}://${req.get("host")}`;
   const path = baseUrl + "/images/" + image;
   uploadModel
-    .create({ image: image })
+    .create({ image: image, format: format })
     .then(() => {
       ResponseHandler.sendSuccessResponse(res, {
         path: path,
